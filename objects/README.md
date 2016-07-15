@@ -17,6 +17,8 @@ object_built_with_string.name // 'this is a string'
 object_built_with_number.name // 'this is a number'
 ```
 
+> We can think of arrays as a particular kind of object (there is not such a "array" type) that only contain integer keys. The Array's prototype provide also some special methods like `push` or `pop`.
+
 You can also create an object with [the "new" keyword](http://stackoverflow.com/questions/1646698/what-is-the-new-keyword-in-javascript). For example `var new_object = new Object();` or `var new_object = new Object;`. This last sentence may sound weird to non javascript developers. See [binding "this" keyword]() #TODO
 
 We may augment the object with new properties/methods dynamically. For non "name" keys, they should be wrapped into brackets. If the property already exists, it will be updated
@@ -48,6 +50,8 @@ aBoolean.newMethod = function() {console.log("newMethod")}
 aBoolean.newMethod // undefined
 ```
 
+> As Mr Crockford says: _"Numbers, strings and booleans are object-like in that they have methods [and properties], but they are immutable. Objects in Javascript are mutable keyed collections."_
+
 In a nutshell, you can create a "boolean object" that "inherits" from "boolean", and so act as an object that have boolean properties and the flexibility of objects.
 
 ```
@@ -64,14 +68,28 @@ aBoolean.newProperty = "new property";
 aBoolean.newProperty // "new property"
 ```
 
+### Loose typing
+
+Javascript does not cast. The lineage of an object is irrelevant. What matters is _what it can do_, not who is its parent neither whats its lineage.
+
+This come with [some advantages](https://dzone.com/articles/understanding-loose-typing-jav) (you don't need to know which type may contain a variable, particularly useful when receiving external data) but it comes with [some disadvantages](http://stackoverflow.com/questions/964910/is-javascript-an-untyped-language), as the Javascript Virtual Machine will always have to analyze the data injected to deduct the type and it affects perf.
+
+```
+1 + 1 // 2
+'1' + 1 // 11
+null + '1' // null1
+```
+
+### Prototype
 
 
-- _Reference_: Always passed by reference, never copied
+
+- _Delete_: will never touch prototype(test), and will reveal elements hidden in the prototype chain. In arrays, use slice.
 - _Prototype_: Prototype chain. Linking retrieval. **Delegation**
 - _Reflection_: hasOwnProperty
 - _Enumeration_: for in // for + array of properties
-- _Delete_: will never touch prototype(test), and will reveal elements hidden in the prototype chain. In arrays, use slice.
-- _Global Abatement_: Use var MYAPP, CommonJS or AMD
-- _Loose typing_: typeof
-- _Arrays as an "integer key" object_ no typeof Array
-- _Variable Hoisting_
+
+- _Reference_: Always passed by reference, never copied #TODO a funciones
+
+- _Variable Hoisting_ #TODO syntaxis or code preprocessing
+- _Global Abatement_: Use var MYAPP, CommonJS or AMD #TODO syntaxis or code preprocessing
