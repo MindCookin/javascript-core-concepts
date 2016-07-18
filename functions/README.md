@@ -190,3 +190,14 @@ function unknownArguments () {
 
 unknownArguments(1, 2, 3) // [1,2,3]
 ```
+
+### object specifiers
+When a function is given a lot of parameters, is better to constrain them in a single object. This also prevent from mistakes in the parameters order.
+
+```
+function constrainedArguments (options) {
+  console.log(options.a, options.b, options.c);
+}
+
+constrainedArguments({a: 1, b: 2, c: 3}) // 1, 2, 3
+```
