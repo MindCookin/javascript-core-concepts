@@ -138,3 +138,55 @@ function outerFunction() {
   console.log(innerVar) // undefined
 }
 ```
+
+### passing by reference or value
+Arguments are always passed by reference, never copied. With the exception of primitive types: `undefined`, `null`, `boolean`, `string` and `number`.
+
+```
+function double (a) {
+  a = a * 2;
+  console.log(a) // 4
+}
+
+var out = 2;
+double(out);
+
+console.log(out); // 2
+```
+
+```
+function double (a) {
+  a.num = a.num * 2;
+  console.log(a.num) // 4
+}
+
+var out = { num: 2};
+double(out);
+
+console.log(out.num); // 4
+```
+
+### arguments
+Arguments are optional. You can execute functions with full argument list or just part of them.
+
+```
+function optionalArguments (a, b, c) {
+  console.log(a, b, c);
+}
+
+optionalArguments(1, 2, 3) // 1, 2, 3
+optionalArguments(1, 2) // 1, 2, undefined
+optionalArguments() // undefined, undefined, undefined
+
+optionalArguments(1, 2, 3, 4, 5, 6, 7, 8) // 1, 2, 3
+```
+
+You can also capture the argument list that a function have been called with, [thanks to the arguments object](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Funciones/arguments).
+
+```
+function unknownArguments () {
+  console.log(arguments);
+}
+
+unknownArguments(1, 2, 3) // [1,2,3]
+```
