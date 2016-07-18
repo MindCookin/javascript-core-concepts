@@ -82,14 +82,42 @@ null + '1' // null1
 
 ### Prototype
 
+As a _loosely typed_ language, the linage of an object does not matter, what matters is what it can do.
 
+JavaScript is a _prototypal language_, this means that object inherit directly from other objects through their prototype.
 
-- _Delete_: will never touch prototype(test), and will reveal elements hidden in the prototype chain. In arrays, use slice.
-- _Prototype_: Prototype chain. Linking retrieval. **Delegation**
-- _Reflection_: hasOwnProperty
-- _Enumeration_: for in // for + array of properties
+###### accessing prototype
+Prototype chain. Linking retrieval. **Delegation**
 
-- _Reference_: Always passed by reference, never copied #TODO a funciones
+###### enumeration
+for in // for + array of properties
 
-- _Variable Hoisting_ #TODO syntaxis or code preprocessing
-- _Global Abatement_: Use var MYAPP, CommonJS or AMD #TODO syntaxis or code preprocessing
+###### `delete`
+Will never touch prototype(test), and will reveal elements hidden in the prototype chain. In arrays, use slice.
+
+###### reflection
+hasOwnProperty
+
+### Inheritance techniques
+
+> _"Javascript is conflicted about its prototypal nature. Unnecessary level of indirection such that objects are produced by constructor functions (not useful constructor method)"_
+
+Much of the complexity of class hierarchies is motivated by the constraints of static type checking. Javascript is free of those constraints.
+
+In classical languages, inheritance is the only way for code reuse. Javascript has more and better options.
+
+###### Pseudoclassical
+No privacy, no "super" methods, problems if you forget to initialize without "new" (this bounded to global var)
+
+###### Prototypal
+Focus in objects, not classes: A new object can inherit the properties of an old object. _Differential inheritance_ Object.create from ECMASCRIPT 5.1. _Again, no privacy_
+
+###### Functional
+No need for "new" prefix. Flexibility. Durable. Better encapsulation. Super methods.
+  * It creates a new object
+  * It optionally defines private instance variables and methods
+  * It augments that new object with methods
+  * It returns that new object
+
+###### Parts
+A constructor can be made from a set of parts. Great benefit over classical lineage, we can focus on the contents not on the inheritance. Thanks to loose typing.
