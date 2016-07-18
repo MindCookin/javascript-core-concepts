@@ -6,21 +6,70 @@
 
 Functions in Javascript are just like any other JS Object. They inherit from `Function.prototype` (who also inherit from `Object.prototype`).
 
+Function literals let you create functions. You can add a name, but you can also leave the function anonymous. You may also bind the function to a variable.
+
+Anonymous functions are commonly used for specific functionality (i.e. callbacks) but they do not have a "name" property. So they are harder to debug.
+
+```
+function namedFunction() {....} // named function
+function () {....} // anonymous function
+var variableLinkedFunction = function () {....} // variable linked function
+```
+
 ### invocation and `this` keyword
 
 When executing a function _as is_ (Function Invocation Pattern) `this` keyword is bind to the global object.
 
+```
+function aFunction () {
+  console.log(this)
+}
+
+aFunction() // 'Window' or 'global'
+```
+
 When the function is stored as an object's property, we will execute the function _as a method_ (Method Invocation Pattern). Then `this` is bound to the object at invocation time
 
+```
+var obj = {
+  aMethod: function aFunction () {
+    console.log(this)
+  }
+};
+
+obj.aMethod() // Object
+```
+
 When a function is invoked with the `new` prefix, then a new object is created (with a hidden link to the function's prototype) and `this` will be bound to that new object. This is the Constructor Invocation Pattern
+
+```
+var AConstructor = function () {
+  console.log(this);
+};
+
+new AConstructor() // AConstructor
+```
 
 > There are some drawbacks with the Constructor Invocation Pattern #TODO
 
 When a function is invoked with `apply` or `call`, you can choose the `this` binding at execution time.
 
+```
+aFunction.apply(null) // Window
+aFunction.apply({}) // Objects
+aFunction.apply(document) // #document
+```
+
 ### binding `this`
 
 You may create a function instance binding `this` dynamically at execution time. This is particularly useful with callback functions. It is important to notice that a new instance of the function will be created when executing bind.
+
+```
+aFunction() // Window
+
+var linkedFunction = aFunction.bind(document);
+linkedFunction() // #document
+```
 
 ### function scope
 
