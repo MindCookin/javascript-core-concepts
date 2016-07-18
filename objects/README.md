@@ -89,8 +89,12 @@ JavaScript is a _prototypal language_, this means that object inherit directly f
 ###### accessing prototype
 Prototype chain. Linking retrieval. **Delegation**
 
+###### shadowing
+
 ###### enumeration
-for in // for + array of properties
+`for in` will reveal all the object's properties
+
+To prevent this, if you know the properties you may use `for + array of properties` instead
 
 ###### `delete`
 Will never touch prototype(test), and will reveal elements hidden in the prototype chain. In arrays, use slice.
