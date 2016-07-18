@@ -60,6 +60,8 @@ aFunction.apply({}) // Objects
 aFunction.apply(document) // #document
 ```
 
+More examples and explanation [on this subject](http://blog.amatiasq.com/2012/01/javascript-conceptos-basicos-this-call-y-apply/)
+
 ### binding `this`
 
 You may create a function instance binding `this` dynamically at execution time. This is particularly useful with callback functions. It is important to notice that a new instance of the function will be created when executing bind.
